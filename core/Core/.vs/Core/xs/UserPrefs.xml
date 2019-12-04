@@ -1,0 +1,24 @@
+﻿<Properties StartupConfiguration="{C8544482-7071-4844-B7C6-B22A934DC6B5}|Default">
+  <MonoDevelop.Ide.ItemProperties.Core PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="FaceNet.cs">
+    <Files>
+      <File FileName="Program.cs" Line="133" Column="50" />
+      <File FileName="FaceNet.cs" Line="9" Column="21" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Core" expanded="True" selected="True">
+            <Node name="Core" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -7,6 +7,9 @@
 
   <ItemGroup>
     <PackageReference Include="ElectronCgi.DotNet" Version="0.0.5" />
+    <PackageReference Include="NetMQ" Version="4.0.0.207" />
+    <PackageReference Include="AsyncIO" Version="0.1.69" />
+    <PackageReference Include="Google.Protobuf" Version="3.11.1" />
   </ItemGroup>
 
 </Project>
