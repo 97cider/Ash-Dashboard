@@ -182,8 +182,11 @@ namespace nodeBackend
             //NetMqReal.isFaceRes.TryDequeue(out face);
             connection.On<string, string>("cameraCheck", name => {
                 NetMqReal.isFaceRes.TryDequeue(out string face);
+                connection.Send("onFace", face);
                 return face;
+                
             }) ;
+
             connection.Listen();
                    
         }
