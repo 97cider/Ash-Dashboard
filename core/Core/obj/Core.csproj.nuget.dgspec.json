@@ -1,27 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sean and Will\\AshTracker\\core\\Core\\Core.csproj": {}
+    "/Users/bmcfadd/skewl/Ash-Dashboard/core/Core/Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sean and Will\\AshTracker\\core\\Core\\Core.csproj": {
+    "/Users/bmcfadd/skewl/Ash-Dashboard/core/Core/Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sean and Will\\AshTracker\\core\\Core\\Core.csproj",
+        "projectUniqueName": "/Users/bmcfadd/skewl/Ash-Dashboard/core/Core/Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\Sean and Will\\AshTracker\\core\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\Sean and Will\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sean and Will\\AshTracker\\core\\Core\\obj\\",
+        "projectPath": "/Users/bmcfadd/skewl/Ash-Dashboard/core/Core/Core.csproj",
+        "packagesPath": "/Users/bmcfadd/.nuget/packages/",
+        "outputPath": "/Users/bmcfadd/skewl/Ash-Dashboard/core/Core/obj/",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Sean and Will\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/bmcfadd/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,9 +39,21 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "AsyncIO": {
+              "target": "Package",
+              "version": "[0.1.69, )"
+            },
             "ElectronCgi.DotNet": {
               "target": "Package",
               "version": "[0.0.5, )"
+            },
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.11.1, )"
+            },
+            "NetMQ": {
+              "target": "Package",
+              "version": "[4.0.0.207, )"
             }
           },
           "imports": [
@@ -58,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }
