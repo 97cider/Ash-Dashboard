@@ -9,7 +9,7 @@ const ipcRenderer = require('electron').ipcRenderer;
 ipcRenderer.on('cameraError', function() {
     if (document.getElementsByClassName("notification-header.hidden").length > 0) {
         document.getElementsByClassName("notification-header.hidden")[0].className = "notification-header";
-        document.getElementsByClassName("notification-header-content")[0].innerHTML = "ERROR: Camera Not Found!";
+        document.getElementsByClassName("notification-header-content")[0].innerHTML = "ERROR: Face Not Found!";
     }
 });
 
