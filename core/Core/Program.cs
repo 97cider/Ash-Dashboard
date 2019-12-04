@@ -35,7 +35,7 @@ namespace nodeBackend
                 subSocket.Subscribe("");
                 while (!_listenerCancelled)
                 {
-                    string frameString;
+                    //string frameString;
                     List<string> strs = new List<string>();
                     //if (!subSocket.TryReceive(out frameString)) continue;
                     byte[] arr;
@@ -123,25 +123,25 @@ namespace nodeBackend
 
     class NetMqReal
     {
-        public static ConcurrentQueue<string> isFaceRes;
-        public static void listenNode()
-        {
-            var connection = new ConnectionBuilder().WithLogging().Build();
-            string isFace;
-            try
-            {
-                isFaceRes.TryDequeue(out isFace);
-                connection.On<string, string>("greeting", name => "Face: " + isFace);
-                connection.Listen();
-            }
-            catch (Exception e)
-            {
-                //Console.Write(e);
-            }
-        }
+        public static ConcurrentQueue<string> isFaceRes = new ConcurrentQueue<string>();
+        //public static void listenNode()
+        //{
+        //    var connection = new ConnectionBuilder().WithLogging().Build();
+        //    string isFace;
+        //    try
+        //    {
+        //        isFaceRes.TryDequeue(out isFace);
+        //        connection.On<string, string>("greeting", name => "Face: " + isFace);
+        //        connection.Listen();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        //Console.Write(e);
+        //    }
+        //}
         public static void Read()
         {
-            isFaceRes = new ConcurrentQueue<string>();
+            
             string topic = "";
             //Console.WriteLine("Subscriber started for Topic : {0}", topic);
             
@@ -158,11 +158,12 @@ namespace nodeBackend
                     if(!subSocket.TryReceiveFrameBytes(out arr)) continue;
                     //subSocket.ReceiveFrameString();
                     fc = Face.Parser.ParseFrom(arr);
-                    
+
                     ////Console.WriteLine(messageTopicReceived    );
                     //string messageReceived = subSocket.ReceiveFrameString();
 
                     //Console.WriteLine(fc.IsFace);
+                    
                     isFaceRes.Enqueue(fc.IsFace.ToString());
                 }
             }
@@ -174,21 +175,17 @@ namespace nodeBackend
         //public static NetMqListener.MessageDelegate HandleMessage { get; private set; }
         static void Main(string[] args)
         {
-            var connection = new ConnectionBuilder()
-                .WithLogging()
-                .Build();
-
-            connection.On<string, string>("cameraCheck", name => "Og " + name);
-
+            NetMqReal nmqr = new NetMqReal();
             Thread t = new Thread(NetMqReal.Read);
             t.Start();
             var connection = new ConnectionBuilder().WithLogging().Build();
-            string face;
-            NetMqReal.isFaceRes.TryDequeue(out face);
-            
-            connection.On<string, string>("greeting", name => "Face: " + NetMqReal.isFaceRes.Count.ToString());
+            //NetMqReal.isFaceRes.TryDequeue(out face);
+            connection.On<string, string>("cameraCheck", name => {
+                NetMqReal.isFaceRes.TryDequeue(out string face);
+                return face;
+            }) ;
             connection.Listen();
-            
+                   
         }
 
         private static void HandleMessage(string message)

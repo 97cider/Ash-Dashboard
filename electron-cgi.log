@@ -1,0 +1,8 @@
+2019-12-03 23:11:45.989 -05:00 [ERR] 
+ElectronCgi.DotNet.NoRequestHandlerFoundException: No request handler found for request type: cameraCheck
+   at ElectronCgi.DotNet.RequestExecutedChannelMessage.Send(IChannel channel)
+   at ElectronCgi.DotNet.MessageDispatcher.<>c__DisplayClass3_0.<<StartAsync>b__0>d.MoveNext()
+2019-12-03 23:12:17.525 -05:00 [ERR] 
+ElectronCgi.DotNet.NoRequestHandlerFoundException: No request handler found for request type: cameraCheck
+   at ElectronCgi.DotNet.RequestExecutedChannelMessage.Send(IChannel channel)
+   at ElectronCgi.DotNet.MessageDispatcher.<>c__DisplayClass3_0.<<StartAsync>b__0>d.MoveNext()
