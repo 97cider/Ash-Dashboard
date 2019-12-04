@@ -1,13 +1,12 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const { ConnectionBuilder } = require('electron-cgi');
+const ipcRenderer = require("electron").ipcRenderer;
 const path = require('path')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
-let displayToggle = false;
-
+let mainWindow = null;
 
 let connection = new ConnectionBuilder()
     .connectTo("dotnet", "run", "--project", "./core/Core")
@@ -34,22 +33,12 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null
-  });
 
-  setInterval(async () => {
-    console.log("checking for a camera signal");
-    connection.send('cameraCheck', 'timestamp', greeting => {
-      console.log(greeting);
-    });
-  }, 3000);
+  });
 }
 
 // This method will be called when Electron has finished
@@ -72,3 +61,17 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+setInterval(function() {
+  console.log("checking for a camera signal");
+  connection.send('cameraCheck', 'timestamp', greeting => {
+    let displayError = true;
+    // TODO: BRENDAN REMOVE THE '= false' and calculate the value if it 
+    // should show the error.
+    if (displayError) {
+      mainWindow.webContents.send('cameraError', displayError);
+    } else {
+      mainWindow.webContents.send('cameraRestore', displayError);
+    }
+  });
+}, 3000);
