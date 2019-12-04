@@ -6,6 +6,8 @@ const path = require('path')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let displayToggle = false;
+
 
 let connection = new ConnectionBuilder()
     .connectTo("dotnet", "run", "--project", "./core/Core")
@@ -14,11 +16,6 @@ let connection = new ConnectionBuilder()
 connection.onDisconnect = () => {
   console.log("connection to DOTNET lost");
 }
-
-connection.send('greeting', 'John', greeting => {
-  console.log("Sending a message to the dotnet backend");
-  console.log(greeting);
-});
 
 function createWindow () {
   // Create the browser window.
@@ -31,7 +28,7 @@ function createWindow () {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true
     }
-  })
+  });
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
@@ -45,7 +42,14 @@ function createWindow () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
-  })
+  });
+
+  setInterval(async () => {
+    console.log("checking for a camera signal");
+    connection.send('cameraCheck', 'timestamp', greeting => {
+      console.log(greeting);
+    });
+  }, 3000);
 }
 
 // This method will be called when Electron has finished
