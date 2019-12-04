@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url("./resources/fonts/OpenSans-Regular.ttf") format("truetype"); }
+
+.body {
+  background-color: #d4d4d4; }
+
+.titlebar {
+  -webkit-app-region: drag;
+  width: 100%;
+  background-color: #67A3DF;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+  height: 48px;
+  padding: none;
+  margin: 0px;
+  z-index: 1; }
+
+.notification-header {
+  height: 24px;
+  background-color: #ff2f2f;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+  padding: none;
+  z-index: 10; }
+
+.notification-header-content {
+  font-size: 16px;
+  padding-left: 5px;
+  padding-top: 5px;
+  color: white;
+  font-family: 'Open Sans', sans-serif; }
+
+.notification-header.hidden {
+  visibility: hidden; }
+
+.titlebar-content {
+  font-size: 32px;
+  padding-left: 5px;
+  padding-top: 5px;
+  color: white;
+  font-family: 'Open Sans', sans-serif; }
+
+body, html {
+  margin: 0px;
+  padding: 0px; }
+
+.sidebar {
+  margin-top: 48px;
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  padding-top: 20px;
+  box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1); }
+
+.sidebar-content {
+  font-size: 24px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  color: #575757;
+  font-family: 'Open Sans', sans-serif; }
+
+.maincontent {
+  height: 100%;
+  width: auto;
+  margin-left: 200px;
+  padding-top: 20px;
+  padding-left: 20px; }
+
+.window-controls {
+  display: grid;
+  grid-template-columns: repeat(5, 46px);
+  position: absolute;
+  top: 0px;
+  margin: auto;
+  right: 0px;
+  padding: 12px;
+  font-family: "Segoe MDL2 Assets";
+  font-size: 20px; }
+
+.window-controls .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; }
+
+.window-controls .button:hover {
+  background: rgba(255, 255, 255, 0.1); }
+
+.window-controls .button:active {
+  background: rgba(255, 255, 255, 0.2); }
+
+.header-icon {
+  width: 25px;
+  height: 25px; }
+
+#close-button:hover {
+  background: #E81123 !important; }
+
+#close-button:active {
+  background: #f1707a !important;
+  color: #000; }
+
+#restore-button {
+  display: none !important; }
+
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-right: 20px;
+  color: #333; }
+
+.welcome-heading {
+  padding: none;
+  margin: none;
+  color: #525252;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 32px; }

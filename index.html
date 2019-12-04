@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+	<link rel="stylesheet" href="css/styles.css">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <div class="titlebar">
+        <div class="titlebar-content">ASH Dashboard
+          <div class="window-controls">
+              <div class="button" id="notification-button">
+                  <img src="./resources/images/bell.png" class="header-icon"> 
+            </div>
+            <div class="button" id="overlay-button">
+                <img src="./resources/images/minimize.png" class="header-icon">
+              </div>
+            <div class="button" id="min-button">
+              <span>&#xE921;</span>
+            </div>
+            <div class="button" id="max-button">
+              <span>&#xE922;</span>
+            </div>
+            <div class="button" id="restore-button">
+              <span>&#xE923;</span>
+            </div>
+            <div class="button" id="close-button">
+              <span>&#xE8BB;</span>
+            </div>
+          </div>
+        </div>
+        <div class="notification-header">
+          <div class="notification-header-content">
+            <b>!</b> ERROR: TEXT
+          </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-content">Profile</div>
+      <div class="sidebar-content">History</div>
+      <div class="sidebar-content">Devices</div>
+      <div class="sidebar-content">Settings</div>
+    </div>
+
+    <div class="maincontent">
+        <div class="welcome-header">
+          <div class="welcome-content">
+              <div class="welcome-heading">Hello User-Name,</class>
+          </div>
+        </div>        
+        <hr>
+
+        We are using Node.js <span id="node-version"></span>,
+        Chromium <span id="chrome-version"></span>,
+        and Electron <span id="electron-version"></span>.
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>
