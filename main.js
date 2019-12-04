@@ -33,7 +33,7 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -63,7 +63,7 @@ app.on('activate', function () {
 // code. You can also put them in separate files and require them here.
 
 setInterval(function() {
-  console.log("checking for a camera signal");
+  //console.log("checking for a camera signal");
   connection.send('cameraCheck', 'timestamp', msg => {
     let displayError = true;
     if (msg == "1") {
@@ -80,4 +80,4 @@ setInterval(function() {
       mainWindow.webContents.send('cameraRestore', displayError);
     }
   });
-}, 3000);
+}, 1000);

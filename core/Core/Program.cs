@@ -173,6 +173,8 @@ namespace nodeBackend
     class Program
     {
         //public static NetMqListener.MessageDelegate HandleMessage { get; private set; }
+
+        public static string prevState;
         static void Main(string[] args)
         {
             NetMqReal nmqr = new NetMqReal();
@@ -180,10 +182,18 @@ namespace nodeBackend
             t.Start();
             var connection = new ConnectionBuilder().WithLogging().Build();
             //NetMqReal.isFaceRes.TryDequeue(out face);
+            System.Threading.Thread.Sleep(2000);
             connection.On<string, string>("cameraCheck", name => {
-                NetMqReal.isFaceRes.TryDequeue(out string face);
-                return face;
-                
+                if (NetMqReal.isFaceRes.TryDequeue(out string face)) {
+                    prevState = face;
+                    return face;
+                }
+                else
+                {
+                    // If we eat up all elements in the queue, just send a byea.
+                    return prevState;
+                }
+              
             }) ;
 
             connection.Listen();

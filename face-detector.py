@@ -53,4 +53,4 @@ with CustomObjectScope({'tf': tf}):
           fmsg.isFace = 0
       st = fmsg.SerializeToString()
       sock.send(st)
-      time.sleep(3)
+      time.sleep(1)
