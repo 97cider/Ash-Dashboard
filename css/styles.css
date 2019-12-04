@@ -21,16 +21,17 @@
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
   padding: none;
   z-index: 10; }
-
-.notification-header-content {
-  font-size: 16px;
-  padding-left: 5px;
-  padding-top: 5px;
-  color: white;
-  font-family: 'Open Sans', sans-serif; }
+  .notification-header .notification-header-content {
+    font-size: 16px;
+    padding-left: 5px;
+    padding-top: 5px;
+    color: white;
+    font-family: 'Open Sans', sans-serif; }
 
 .notification-header.hidden {
-  visibility: hidden; }
+  visibility: hidden !important; }
+  .notification-header.hidden .notification-header-content {
+    font-size: 0px; }
 
 .titlebar-content {
   font-size: 32px;

@@ -64,9 +64,15 @@ app.on('activate', function () {
 
 setInterval(function() {
   console.log("checking for a camera signal");
-  connection.send('cameraCheck', 'timestamp', greeting => {
+  connection.send('cameraCheck', 'timestamp', msg => {
     let displayError = true;
-    // TODO: BRENDAN REMOVE THE '= false' and calculate the value if it 
+    if (msg == "1") {
+      displayError = false;
+    }
+    else {
+      displayError = true;
+    }
+    // TODO: BRENDAN REMOVE THE '= false' and calculate the value if it
     // should show the error.
     if (displayError) {
       mainWindow.webContents.send('cameraError', displayError);
