@@ -10,10 +10,13 @@ from PIL import Image
 import zmq as zatomapqueue
 import face_pb2 as zatomsg
 import argparse
+import math
 parser = argparse.ArgumentParser(description="Rudamentary publisher for face data.")
 parser.add_argument("--debug", help='Output verbose debug information including shapes and bounding boxes.', action='store_true')
+parser.add_argument("--distance", help="Estimated distance for maximum feature extraction", default="45000")
 args = parser.parse_args()
 print(args.debug)
+
 with CustomObjectScope({'tf': tf}):
   # model = load_model('./model/nn4.small2.v1.h5')
   # model.summary()
@@ -56,9 +59,27 @@ with CustomObjectScope({'tf': tf}):
           win.add_overlay(face_res)
 
       if (len(face_res) != 0):
-          print("Face found!")
-          fmsg.isFace = 1
+          # print("left: " + str(face_res[0].left()))
+          # print("top: " + str(face_res[0].top()))
+          # print("right" + str(face_res[0].right()))
+          # print("bottom" + str(face_res[0].bottom()))
+
+          bbox_width = abs(face_res[0].left() - face_res[0].right())
+          bbox_height = abs(face_res[0].top() - face_res[0].bottom())
+
+          # print("bbox width: " + str(bbox_width))
+          # print("bbox height: " + str(bbox_height))
+
+          bbox_area = bbox_width * bbox_height
+          # print("bbox area: " + str(bbox_area))
+          if (bbox_area < int(args.distance)):
+              print("Face too far away!")
+              fmsg.isFace = 2
+          else:
+              print("Face found!")
+              fmsg.isFace = 1
       else:
+          print("ERR: No face")
           fmsg.isFace = 0
       st = fmsg.SerializeToString()
       sock.send(st)

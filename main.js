@@ -66,18 +66,50 @@ setInterval(function() {
   //console.log("checking for a camera signal");
   connection.send('cameraCheck', 'timestamp', msg => {
     let displayError = true;
+    let displayWarn = false;
+    let cameraError = false;
+
     if (msg == "1") {
+      displayWarn = false;
       displayError = false;
+      cameraError = false;
+    }
+    else if (msg == "0"){
+      displayWarn = false;
+      displayError = true;
+      cameraError = false;
+    }
+    else if(msg == "2"){
+      displayError = false;
+      displayWarn = true;
+      cameraError = false;
     }
     else {
-      displayError = true;
+      displayWarn = false;
+      displayError = false;
+      cameraError = true;
     }
+
     // TODO: BRENDAN REMOVE THE '= false' and calculate the value if it
     // should show the error.
-    if (displayError) {
-      mainWindow.webContents.send('cameraError', displayError);
-    } else {
+    console.log("displayWarn: " + displayWarn)
+    console.log("displayErr: " + displayError)
+    console.log("displayCamErr: " + cameraError)
+    console.log(msg)
+    if (displayError && !displayWarn && !cameraError) {
       mainWindow.webContents.send('cameraRestore', displayError);
+      mainWindow.webContents.send('cameraError', displayError);
+    }
+    else if (displayWarn && !displayError && !cameraError) {
+      mainWindow.webContents.send('cameraRestore', displayError);
+      mainWindow.webContents.send('cameraDistance', displayWarn);
+    }
+    else if (cameraError && !displayWarn && !displayError) {
+      mainWindow.webContents.send('cameraRestore', displayError);
+      mainWindow.webContents.send('cameraConnError', cameraError);
+    }
+    else {
+      mainWindow.webContents.send('cameraRestore', cameraError);
     }
   });
 }, 1000);
