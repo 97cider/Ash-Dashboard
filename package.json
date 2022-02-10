@@ -21,6 +21,6 @@
   "devDependencies": {
     "electron": "^7.1.2",
     "electron-cgi": "0.0.5",
-    "node-sass": "^4.13.0"
+    "node-sass": "^7.0.0"
   }
 }
